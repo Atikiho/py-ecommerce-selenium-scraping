@@ -13,8 +13,8 @@ HOME_URL = urljoin(BASE_URL, "test-sites/e-commerce/more/")
 PAGES = {
     "home": HOME_URL,
     "computers": f"{HOME_URL}computers",
-    "laptops": f"{HOME_URL}laptops",
-    "tablets": f"{HOME_URL}tablets",
+    "laptops": f"{HOME_URL}computers/laptops",
+    "tablets": f"{HOME_URL}computers/tablets",
     "phones": f"{HOME_URL}phones",
     "touch": f"{HOME_URL}phones/touch",
 }
@@ -29,7 +29,9 @@ class Product:
     num_of_reviews: int
 
 
-driver = webdriver.Chrome()
+op = webdriver.ChromeOptions()
+op.add_argument('headless')
+driver = webdriver.Chrome(options=op)
 
 FIELDS = [field.name for field in fields(Product)]
 
